@@ -1,11 +1,15 @@
 const express = require('express');
 const ejs = require('ejs');
+const {
+  createNewBook,
+  createNewPokemon,
+  createNewAlbum,
+} = require('./public/script.js');
 
 const app = express();
 
 app.use(express.static('public'));
 
-// set 'html' as the engine, using ejs's renderFile function
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'pug');
 

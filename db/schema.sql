@@ -8,7 +8,7 @@ CREATE TABLE books (
   title VARCHAR(255),
   author VARCHAR(255),
   image VARCHAR(255),
-  releaseDate DATE,
+  releaseDate VARCHAR(255),
   __v INTEGER
 );
 
@@ -23,7 +23,7 @@ CREATE TABLE albums (
   id SERIAL PRIMARY KEY,
   artistName VARCHAR(255),
   name VARCHAR(255),
-  releaseDate DATE,
+  releaseDate VARCHAR(255),
   __v INTEGER,
-  genres VARCHAR(255)[]
+  genres VARCHAR(255) ARRAY
 );
