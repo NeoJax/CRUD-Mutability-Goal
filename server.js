@@ -14,7 +14,7 @@ app.engine('html', ejs.renderFile);
 app.set('view engine', 'pug');
 
 app.get('/', (request, response) => {
-  response.render('base');
+  response.render('index');
 });
 
 app.get('/books', (request, response) => {
