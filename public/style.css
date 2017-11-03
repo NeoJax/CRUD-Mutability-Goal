@@ -1,1 +1,15 @@
-/*Custom styles here*/
+/* Custom styles here */
+
+.edit {
+  position: absolute;
+  left: 2%;
+}
+
+.delete {
+  position: absolute;
+  right: 2%;
+}
+
+.list-group {
+  text-align: center;
+}

@@ -13,4 +13,14 @@ block content
         ul(class="list-group")
           <!-- your resource items here -->
       div(class="panel panel-default")
-        button(class="addBook") Add a book
+        form(action="/books" method="POST")
+          span Title:
+          input(type="text" name="title")
+          span Author:
+          input(type="text" name="author")
+          br
+          span Image URL:
+          input(type="text" name="image")
+          span Release Date:
+          input(type="text" name="releaseDate")
+          input(type="submit" class="addBook")
