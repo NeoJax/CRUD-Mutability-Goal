@@ -1,4 +1,4 @@
-/* eslint func-names: 0, no-undef: 0, no-console: 0 */
+/* eslint func-names: 0, no-undef: 0, no-console: 0 , no-loop-func: 0 , no-underscore-dangle: 0 */
 console.log('Sanity Check: JS is working!');
 
 function grabBooks() {
@@ -18,12 +18,15 @@ function grabBooks() {
   });
 }
 
-function postBook(data) {
-  fetch('http://mutably.herokuapp.com/books', {
+function postBook(formData) {
+  fetch('http://mutably.herokuapp.com/books/', {
     method: 'POST',
-    body: data,
-  }).then((element) => {
-    console.log(element);
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: formData,
+  }).then(() => {
     grabBooks();
   });
 }
@@ -34,7 +37,16 @@ function grabBook(name) {
       fetch(`http://mutably.herokuapp.com/books/${$('.title')[i].parentNode.id}`, {
         method: 'GET',
       }).then(data => data.json())
-        .then(element => console.log(element));
+        .then((element) => {
+          $('.list-group').empty();
+          $('.list-group').append(`<div id=${element._id}>
+          <div id=edit${element._id} style="display:none">
+          <input type="text" name="title" class="editText editBar" value="${element.title}">
+          <button class="editSave editBar">save</button></div>
+          <button class="edit">edit</button>
+          <span class="title title${element._id}">${element.title}</span>
+          <button class="delete">delete</button></div><br>`);
+        });
     }
   }
 }
@@ -42,10 +54,15 @@ function grabBook(name) {
 function updateBook(id, newData) {
   fetch(`http://mutably.herokuapp.com/books/${id}`, {
     method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
     body: newData,
   }).then(() => {
     $(`#edit${id}`).hide();
     $(`.title${id}`).show();
+    grabBooks();
   });
 }
 
@@ -97,9 +114,8 @@ $(document).ready(() => {
     }
   });
   $(document).on('click', '.editSave', function () {
-    console.log($(this).prev().val());
-    // let newTitle = $(this).prev().val();
-    // updateBook(this.parentNode.parentNode.id, newData);
+    const newTitle = { title: $(this).prev().val() };
+    updateBook(this.parentNode.parentNode.id, JSON.stringify(newTitle));
   });
   $(document).on('click', '.delete', function () {
     deleteBook(this.parentNode.id);
@@ -107,15 +123,14 @@ $(document).ready(() => {
   $(document).on('click', '.findBook', () => {
     grabBook($('#findTitle').val());
   });
-  $(document).on('click', '.addBook', () => {
-    console.log($(this.parentNode));
-  });
   $('#newBookForm').on('submit', function (event) {
     event.preventDefault();
-    const formData = $(this).serializeArray();
-    const newBook = {};
-    $(formData).each((index, element) => {
-      newBook[element.name] = element.value;
+    let formData = $(this).serializeArray();
+    formData = JSON.stringify({
+      title: formData[0].value,
+      author: formData[1].value,
+      image: formData[2].value,
+      releaseDate: formData[3].value,
     });
     postBook(formData);
   });
