@@ -13,7 +13,7 @@ block content
         ul(class="list-group")
           <!-- your resource items here -->
       div(class="panel panel-default")
-        form(action="/books" method="POST")
+        form(action="/books" method="POST" id="newBookForm")
           span Title:
           input(type="text" name="title")
           span Author:
@@ -24,3 +24,7 @@ block content
           span Release Date:
           input(type="text" name="releaseDate")
           input(type="submit" class="addBook")
+        div
+          span Title:
+          input(type="text" name="title" id="findTitle")
+          button(class="findBook") Find a Book
