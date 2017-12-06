@@ -6,15 +6,18 @@ function grabBooks() {
   fetch('http://mutably.herokuapp.com/books', {
     method: 'GET',
   }).then(resolve => resolve.json()).then((data) => {
-    data.books.forEach((element) => {
-      $('.list-group').append(`<div id=${element._id}>
-      <div id=edit${element._id} style="display:none">
-      <input type="text" name="title" class="editText editBar" value="${element.title}">
-      <button class="editSave editBar">save</button></div>
-      <button class="edit">edit</button>
-      <span class="title title${element._id}">${element.title}</span>
-      <button class="delete">delete</button></div><br><br>`);
-    });
+    for (let i = 0; i < data.books.length; i++) {
+      $('.list-group').append(`<div id=${data.books[i]._id} class="ui attached segment">
+      <div id=edit${data.books[i]._id} style="display:none" class="ui input">
+      <input type="text" name="title" class="editText editBar ui input" value="${data.books[i].title}">
+      <button class="editSave editBar ui button primary basic">save</button></div>
+      <button class="edit editBar ui button positive">edit</button>
+      <span class="title title${data.books[i]._id}">${data.books[i].title}</span>
+      <button class="delete editBar ui button negative">delete</button></div`);
+      // if (i + 1 < data.books.length) {
+      //   $('.list-group').append('</div><div class="ui section divider">');
+      // }
+    }
   });
 }
 
@@ -40,12 +43,16 @@ function grabBook(name) {
         .then((element) => {
           $('.list-group').empty();
           $('.list-group').append(`<div id=${element._id}>
-          <div id=edit${element._id} style="display:none">
-          <input type="text" name="title" class="editText editBar" value="${element.title}">
-          <button class="editSave editBar">save</button></div>
-          <button class="edit">edit</button>
-          <span class="title title${element._id}">${element.title}</span>
-          <button class="delete">delete</button></div><br>`);
+          <div id=edit${element._id} style="display:none" class="ui input">
+          <input type="text" name="title" class="editText editBar ui input" value="${element.title}">
+          <button class="editSave editBar ui button primary basic">save</button></div>
+          <button class="edit ui button positive">edit</button>
+          <span class="title title${element._id}">Title: ${element.title}</span>
+          <button class="delete ui button negative">delete</button>
+          <span class="author author${element._id}">Author: ${element.author}</span>
+          <span class="releaseDate releaseDate${element._id}">Release Date: ${element.releaseDate}</span>
+          <div class="ui medium bordered image image${element._id}"><img src="${element.image}"></div>
+          </div>`);
         });
     }
   }
@@ -97,7 +104,7 @@ function grabAlbums() {
 }
 
 $(document).ready(() => {
-  if ($('.panel-heading').html() === 'Books') {
+  if ($('.heading').html() === 'Books') {
     grabBooks();
   } else if ($('.panel-heading').html() === 'Pokemon') {
     grabPokemon();

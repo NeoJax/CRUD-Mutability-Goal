@@ -13,3 +13,24 @@
 .list-group {
   text-align: center;
 }
+
+.searchBar {
+  justify-content: center;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  top: 50%;
+  max-height: 1%;
+}
+
+.editBar {
+  position: absolute;
+  top: 10%;
+}
+
+.findBar {
+  position: absolute;
+  left: 14.25em;
+}

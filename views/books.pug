@@ -8,23 +8,25 @@ block content
         a(class="navbar-brand" href="/books") books
         a(class="navbar-brand" href="/pokemon") pokemon
         a(class="navbar-brand" href="albums") albums
-      div(class="panel panel-default")
-        div(class="panel-heading") Books
-        ul(class="list-group")
+      div(class="findBar ui left action right labeled input center")
+        span(class="ui label") Title:
+        input(type="text" name="title" id="findTitle")
+        button(class="findBook ui button") Find a Book
+      br
+      div(class="ui segments")
+        div(class="ui top segment heading") Books
+        div(class="ui secondary segment list-group")
           <!-- your resource items here -->
-      div(class="panel panel-default")
-        form(action="/books" method="POST" id="newBookForm")
-          span Title:
-          input(type="text" name="title")
-          span Author:
-          input(type="text" name="author")
-          br
-          span Image URL:
-          input(type="text" name="image")
-          span Release Date:
-          input(type="text" name="releaseDate")
-          input(type="submit" class="addBook")
-        div
-          span Title:
-          input(type="text" name="title" id="findTitle")
-          button(class="findBook") Find a Book
+      div
+        form(action="/books" method="POST" id="newBookForm" class="ui form")
+          div(class="field") Title:
+            input(type="text" name="title")
+          div(class="field") Author:
+            input(type="text" name="author")
+          div(class="field") Image URL:
+            input(type="text" name="image")
+          div(class="field") Release Date:
+            input(type="text" name="releaseDate")
+          input(type="submit" class="addBook ui button")
+      br  
+      i(class="hand lizard icon")

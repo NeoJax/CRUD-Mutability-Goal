@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Semantic-UI</title>
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+  </head>
+  <body>
+    <div class="ui menu">
+      <a class="item" href="#">Home</a>
+      <a class="item" href="#">Inbox</a>
+      <a class="item ui dropdown">
+        <div class="text">Select</div>
+        <i class="dropdown icon"></i>
+        <div class="menu ui transition hidden">
+          <div class="item" data-value="option1">Option 1</div>
+          <div class="item" data-value="option2">Option 2</div>
+        </div>
+      </a>
+    </div>
+  </body>
+</html>
