@@ -16,7 +16,7 @@
     "express": "^4.15.2",
     "isomorphic-fetch": "^2.2.1",
     "pg-promise": "^7.3.1",
-    "pug": "^2.0.0-rc.4",
+    "pug": "^3.0.1",
     "semantic-ui": "^2.2.13"
   },
   "devDependencies": {
